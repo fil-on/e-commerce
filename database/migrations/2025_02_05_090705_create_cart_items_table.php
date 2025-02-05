@@ -20,7 +20,7 @@ return new class extends Migration
             $table->smallInteger('quantity')->default(1);
             $table->timestamps();
 
-            $table->unique(['user_id', 'quantity']);
+            $table->unique(['user_id', 'product_id']);
         });
     }
 
