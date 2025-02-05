@@ -31,6 +31,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::middleware('role:user')->group(function () {
         Volt::route('product-list', 'product/list')->name('products.list');
+
+        Volt::route('cart', 'cart/index')->name('cart.index');
     });
 });
 

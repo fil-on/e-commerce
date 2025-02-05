@@ -3,6 +3,7 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Layout;
 use App\Models\Product;
+use App\Models\CartItem;
 use Livewire\WithPagination;
 
 new #[Layout('layouts.app')] 
@@ -12,6 +13,25 @@ class extends Component {
         return [
             'products' => Product::paginate(9),
         ];
+    }
+
+    public function addToCart($id) {
+        $product = Product::find($id);
+        if (!$product) abort(404);
+        $cartItem = CartItem::where([
+            'user_id' => auth()->user()->id,
+            'product_id' => $id,
+        ]);
+        if ($cartItem->exists()) {
+            $cartItem->increment('quantity');
+        } else {
+            CartItem::create([
+                'user_id' => auth()->user()->id,
+                'product_id' => $id,
+            ]);
+        }
+
+        $this->dispatch('cart-updated');
     }
 
 }; ?>
@@ -44,8 +64,9 @@ class extends Component {
                                 class="font-bold">Price:</span> ${{
                             $product->price}}</p>
                         <div class="flex items-center justify-end w-full">
-                            <button type="button"
-                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add
+                            <button type="button" wire:click="addToCart({{ $product->id }})"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                wire:loading.attr="disabled">Add
                                 to cart</button>
 
                         </div>

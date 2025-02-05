@@ -5,6 +5,17 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
+    public $cartItems = 0;
+    protected $listeners = ['cart-updated' => 'updateCartItems'];
+
+    public function mount()
+    {
+        $this->updateCartItems();
+    }
+
+    public function updateCartItems() {
+        $this->cartItems = auth()->user()->cartItem()->count();
+    }
     /**
      * Log the current user out of the application.
      */
@@ -53,6 +64,11 @@ new class extends Component
                     <x-nav-link :href="route('products.list')" :active="request()->routeIs('products.list')"
                         wire:navigate>
                         {{ __('Products List') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')" wire:navigate>
+                        {{ __('Cart') }} ({{ $cartItems }})
                     </x-nav-link>
                 </div>
                 @endif
