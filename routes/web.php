@@ -16,16 +16,24 @@ use Livewire\Volt\Volt;
 
 Route::get('/', fn() => redirect('/login'));
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::view('dashboard', 'dashboard')
+        ->name('dashboard');
 
-Volt::route('users', 'user/index')->middleware(['auth'])->name('users.index');
-Volt::route('users/{user}', 'user/edit')->middleware(['auth'])->name('users.edit');
+    Route::middleware('role:admin')->group(function () {
+        Volt::route('users', 'user/index')->name('users.index');
+        Volt::route('users/{user}', 'user/edit')->name('users.edit');
 
-Volt::route('products', 'product/index')->middleware(['auth'])->name('products.index');
-Volt::route('products/add', 'product/add')->middleware(['auth'])->name('products.add');
-Volt::route('products/{product}', 'product/edit')->middleware(['auth'])->name('products.edit');
+        Volt::route('products', 'product/index')->name('products.index');
+        Volt::route('products/add', 'product/add')->name('products.add');
+        Volt::route('products/{product}', 'product/edit')->name('products.edit');
+    });
+
+    Route::middleware('role:user')->group(function () {
+        Volt::route('product-list', 'product/list')->name('products.list');
+    });
+});
+
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
