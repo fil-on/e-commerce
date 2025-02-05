@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreignIdFor(Product::class);
             $table->smallInteger('quantity')->default(1);
             $table->timestamps();
+
+            $table->unique(['user_id', 'quantity']);
         });
     }
 
