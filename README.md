@@ -8,11 +8,11 @@
 
 1. User can:
 
--   [ ] Create an account (Register).
--   [ ] Sign in.
--   [ ] View his personal information.
--   [ ] Modify his personal information.
--   [ ] Change password.
+-   [x] Create an account (Register).
+-   [x] Sign in.
+-   [x] View his personal information.
+-   [x] Modify his personal information.
+-   [x] Change password.
 -   [ ] Add a product to the cart.
 -   [ ] Make your purchase using the Stripe payment gateway (developer test mode).
 
