@@ -19,6 +19,12 @@ class extends Component {
     public function removeProduct($id) {
         CartItem::find($id)->delete();
     }
+
+    public function adjustQuantity($id, $count) {
+        $cartItem = CartItem::find($id);
+        if ($cartItem->quantity == 1 && $count == '-1') return;    
+        else $cartItem->increment('quantity', $count);
+    }
 }; ?>
 
 <x-slot name="header">
@@ -65,7 +71,17 @@ class extends Component {
                                     ${{ number_format($cartItem->product->price, 2) }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $cartItem->quantity }}
+                                    <div class="flex items-center justify-between gap-2">
+                                        <button type="button" wire:click="adjustQuantity({{ $cartItem->id }}, -1)"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                            wire:loading.attr="disabled">-</button>
+                                        <p class="text-center">
+                                            {{ $cartItem->quantity }}
+                                        </p>
+                                        <button type="button" wire:click="adjustQuantity({{ $cartItem->id }}, 1)"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                            wire:loading.attr="disabled">+</button>
+                                    </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     ${{ number_format($cartItem->quantity * $cartItem->product->price, 2) }}
