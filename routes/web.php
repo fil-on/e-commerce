@@ -14,7 +14,7 @@ use Livewire\Volt\Volt;
 |
 */
 
-Route::view('/', 'welcome');
+Route::get('/', fn() => redirect('/login'));
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
