@@ -20,8 +20,8 @@
 
 -   [x] View the information of all users.
 -   [x] Modify user's information.
--   [ ] Delete a user from the site.
--   [ ] Promote the user as an administrator (admin).
+-   [x] Delete a user from the site.
+-   [x] Promote the user as an administrator (admin).
 -   [ ] Create a product (product name, price description).
 
 ### Note:
