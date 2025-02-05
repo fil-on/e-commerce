@@ -30,9 +30,3 @@ The design does not matter, any front-end page is acceptable.
 (Please use roles on your project).
 
 ---
-
-## Todo:
-
--   install laravel
--   install starter kit for auth (breeze)
--
