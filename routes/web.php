@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,8 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('users', 'users')
-    ->middleware(['auth', 'verified'])
-    ->name('users');
+Volt::route('users', 'user/index')->middleware(['auth'])->name('users.index');
+Volt::route('users/{user}', 'user/edit')->middleware(['auth'])->name('users.edit');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])

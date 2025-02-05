@@ -19,7 +19,7 @@
 2. Admin can:
 
 -   [x] View the information of all users.
--   [ ] Modify user's information.
+-   [x] Modify user's information.
 -   [ ] Delete a user from the site.
 -   [ ] Promote the user as an administrator (admin).
 -   [ ] Create a product (product name, price description).
