@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price')->unsigned()->default(0.00);
             $table->foreignIdFor(User::class);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

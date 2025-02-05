@@ -14,8 +14,8 @@ class extends Component {
         ];
     }
 
-    public function deleteUser($id) {
-        User::find($id)->delete();
+    public function deleteProduct($id) {
+        Product::find($id)->delete();
     }
 }; ?>
 
@@ -53,12 +53,12 @@ class extends Component {
                                 class="font-bold">Price:</span> ${{
                             $product->price}}</p>
                         <div class="flex items-center justify-end w-full">
-                            <a href="{{ route('users.edit', $product->id) }}" wire:navigate
+                            <a href="#" wire:navigate
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 Edit
                             </a>
-                            <button type="button" wire:click="deleteUser({{ $product->id }})"
-                                wire:confirm="Are you sure you want to delete this user account?"
+                            <button type="button" wire:click="deleteProduct({{ $product->id }})"
+                                wire:confirm="Are you sure you want to delete this product?"
                                 class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                         </div>
                     </div>
