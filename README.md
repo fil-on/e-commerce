@@ -22,7 +22,7 @@
 -   [x] Modify user's information.
 -   [x] Delete a user from the site.
 -   [x] Promote the user as an administrator (admin).
--   [ ] Create a product (product name, price description).
+-   [x] Create a product (product name, price description).
 
 ### Note:
 
