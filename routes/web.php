@@ -23,6 +23,9 @@ Route::view('dashboard', 'dashboard')
 Volt::route('users', 'user/index')->middleware(['auth'])->name('users.index');
 Volt::route('users/{user}', 'user/edit')->middleware(['auth'])->name('users.edit');
 
+Volt::route('products', 'product/index')->middleware(['auth'])->name('products.index');
+Volt::route('products/{product}', 'product/edit')->middleware(['auth'])->name('products.edit');
+
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
