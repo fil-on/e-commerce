@@ -18,7 +18,7 @@
 
 2. Admin can:
 
--   [ ] View the information of all users.
+-   [x] View the information of all users.
 -   [ ] Modify user's information.
 -   [ ] Delete a user from the site.
 -   [ ] Promote the user as an administrator (admin).
