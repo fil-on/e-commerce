@@ -16,8 +16,8 @@ class extends Component {
         ];
     }
 
-    public function deleteProduct($id) {
-        Product::find($id)->delete();
+    public function removeProduct($id) {
+        CartItem::find($id)->delete();
     }
 }; ?>
 
@@ -47,11 +47,15 @@ class extends Component {
                                 <th scope="col" class="px-6 py-3">
                                     Total
                                 </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($cartItems as $cartItem)
-                            <tr class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                            <tr wire:key="{{ $cartItem->id }}"
+                                class="bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                                 <td scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     <p class="font-bold">{{ $cartItem->product->name }}</p>
@@ -65,6 +69,13 @@ class extends Component {
                                 </td>
                                 <td class="px-6 py-4">
                                     ${{ number_format($cartItem->quantity * $cartItem->product->price, 2) }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    <button type="button" wire:click="removeProduct({{ $cartItem->id }})"
+                                        wire:confirm="Are you sure you want to remove this product from your cart?"
+                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                        Remove
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
