@@ -13,7 +13,7 @@
 -   [x] View his personal information.
 -   [x] Modify his personal information.
 -   [x] Change password.
--   [ ] Add a product to the cart.
+-   [x] Add a product to the cart.
 -   [ ] Make your purchase using the Stripe payment gateway (developer test mode).
 
 2. Admin can:
