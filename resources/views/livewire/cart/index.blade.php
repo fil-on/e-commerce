@@ -17,11 +17,14 @@ class extends Component {
     }
 
     public function removeProduct($id) {
-        CartItem::find($id)->delete();
+        $cartItem = CartItem::find($id);
+        $this->authorize('delete', $cartItem);
+        $cartItem->delete();
     }
 
     public function adjustQuantity($id, $count) {
         $cartItem = CartItem::find($id);
+        $this->authorize('update', $cartItem);
         if ($cartItem->quantity == 1 && $count == '-1') return;    
         else $cartItem->increment('quantity', $count);
     }
