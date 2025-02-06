@@ -15,7 +15,9 @@ class extends Component {
     }
 
     public function deleteProduct($id) {
-        Product::find($id)->delete();
+        $product = Product::find($id);
+        $this->authorize('delete', $product);
+        $product->delete();
     }
 }; ?>
 

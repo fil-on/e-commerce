@@ -12,6 +12,7 @@ class extends Component {
     public $price = 0.00;
 
     public function addProduct() {
+        $this->authorize('create', Product::class);
         $validated = $this->validate([
             'name' => ['string', 'required', 'min:2', 'max:255'],
             'description' => ['string', 'nullable', 'min:2', 'max:255'],
